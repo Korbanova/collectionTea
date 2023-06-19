@@ -2,18 +2,6 @@
     cursor:pointer;
 }
 
-.slider {
-    position: relative;
-}
-
-.slider-list {
-    height: 640px;
-    background-size: cover;
-}
-.slider-list img{
-    max-width: 100%;
-}
-
 .prev,
 .next {
     position: absolute;
@@ -41,8 +29,6 @@
 }
 
 .ui-accordion .ui-accordion-content {
-    /*padding-top: 8px;*/
-    /*padding-bottom: 25px;*/
     border: 0;
 }
 
