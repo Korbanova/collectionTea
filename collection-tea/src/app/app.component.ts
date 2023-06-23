@@ -9,20 +9,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'collection-tea';
   constructor() {
-    console.log('ssss');
-    // $('#accordion');
   }
   ngOnInit() {
-    console.log('init');
-    console.log($('#accordion'));
-    $('#accordion').accordion();
-    $('.btn').addClass(' hvr-grow');
-
-    $('.product-image').magnificPopup({
-      type: 'image'
-    });
 
     let valIndex = $('#validationIndex');
 

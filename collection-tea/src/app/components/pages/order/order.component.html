@@ -1,0 +1,44 @@
+<div class="order mb-5">
+  <div class="container">
+    <h2 class="text-center fs-2 mb-4 mb-lg-5">Сделать заказ</h2>
+    <div class="order-form">
+      <form class="row g-3 col-lg-6 mx-auto" action="https://webhook.site/3d0c1ee3-1492-4386-9805-db40e081cb4c"
+            method="get">
+        <div class="col-lg-12 col-xl-4">
+          <label for="validationDefault01" class="form-label">Имя</label>
+          <input type="text" class="form-control" id="validationDefault01" name="name">
+        </div>
+        <div class="col-lg-12 col-xl-4">
+          <label for="validationDefault02" class="form-label">Фамилия</label>
+          <input type="text" class="form-control" id="validationDefault02">
+        </div>
+        <div class="col-lg-12 col-xl-4">
+          <label for="validationDefaultPhone" class="form-label">Телефон</label>
+          <input type="tel" class="form-control" id="validationDefaultPhone">
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <label for="validationDefault03" class="form-label">Страна</label>
+          <input type="text" class="form-control" id="validationDefault03">
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <label for="validationIndex" class="form-label">Индекс</label>
+          <input type="text" class="form-control" id="validationIndex">
+        </div>
+        <div class="col-12">
+          <label for="validationDefault06" class="form-label">Адрес</label>
+          <input type="text" class="form-control" id="validationDefault06">
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary w-md-25" type="button" id="btnSend">Отправить</button>
+        </div>
+      </form>
+      <div class="w-50  mx-auto d-flex justify-content-center align-items-center d-none" id="popUpSuccess">
+        <div class="alert alert-success d-flex justify-content-center align-items-center fs-4 h-50 w-100"
+             role="alert">
+          Спасибо за заказ!
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="card align-items-center w-50 border-0 m-auto">
+  <a class="product-image d-flex justify-content-center align-items-center h-50 w-50">
+    <img src="{{product.image}}" class="card-img-top" alt="tea">
+  </a>
+  <div class="card-body  px-4 text-center">
+    <h5 class="card-title fs-2">{{product.title}}</h5>
+    <p class="card-text mb-4">{{product.description}}</p>
+    <div class="d-flex justify-content-between">
+      <div class="fw-bold fs-4 w-50">{{product.price}} Р</div>
+      <a class="d-block btn btn-primary w-50"
+         [routerLink]="['/order']"
+         [queryParams]="{product: product.title}">
+        Купить</a>
+    </div>
+
+  </div>
+</div>
