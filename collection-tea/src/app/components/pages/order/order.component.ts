@@ -33,7 +33,6 @@ export class OrderComponent implements OnInit, OnDestroy {
               private productService: ProductService) {
   }
 
-
   ngOnInit() {
     this.subscriptionRouter = this.activatedRouter.queryParams.subscribe(param => {
       this.orderForm.patchValue({
@@ -49,8 +48,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         last_name: this.lastNameUser?.value as string,
         phone: this.phone?.value as string,
         country: this.country?.value as string,
-        zip: '',
-        // zip: this.index?.value as string,
+        zip: this.index?.value as string,
         product: this.orderForm.get('product')?.value as string,
         address: this.address?.value as string,
         comments: this.orderForm.get('comments')?.value as string

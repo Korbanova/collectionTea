@@ -50,10 +50,7 @@ export class CatalogComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.loading = true;
-    console.log('catalogPage' + this.productService.wordSearch);
     this.getDataSearch(!!this.productService.wordSearch)
-
-
 
     this.productService.searchSubject.subscribe({
         next: (param) => {
