@@ -31,6 +31,10 @@
 .prev {
   left: 1%;
 }
+input[readonly] {
+  background: rgba(234, 239, 239, 0.39);
+  /* custom style */
+}
 
 .ui-accordion .ui-accordion-header {
   padding: 25px 50px 25px 25px;
@@ -81,6 +85,11 @@
 .close {
   display: none;
 }
+
+order-component, product-component{
+  flex-grow: 1;
+}
+
 
 @media screen and (max-width: 970px) {
   .slider-list {

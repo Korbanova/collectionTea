@@ -49,3 +49,15 @@
     </div>
   </div>
 </aside>
+
+<div class="popup-container top-0 bottom-0 start-0 end-0 bg-black bg-opacity-75" [class]="showPopup?'position-fixed':'d-none'">
+<!--  <div class="popup bg-white p-5 w-50 position-fixed start-50 top-50 translate-middle">Текст впопапе</div>-->
+  <div class="p-5 mb-4 bg-light rounded-3 position-fixed start-50 top-50 translate-middle">
+    <div class="container-fluid py-5">
+      <h4 class="display-5 fw-bold py-4 fs-2">Посмотрите наши чайные коллекции!</h4>
+<!--      <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>-->
+      <a routerLink="catalog" class="btn btn-primary px-5 mt-3"type="button">Смотреть</a>
+    </div>
+  </div>
+</div>
+

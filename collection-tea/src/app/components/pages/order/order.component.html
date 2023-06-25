@@ -1,43 +1,134 @@
 <div class="order mb-5">
   <div class="container">
     <h2 class="text-center fs-2 mb-4 mb-lg-5">Сделать заказ</h2>
-    <div class="order-form">
-      <form class="row g-3 col-lg-6 mx-auto" action="https://webhook.site/3d0c1ee3-1492-4386-9805-db40e081cb4c"
-            method="get">
-        <div class="col-lg-12 col-xl-4">
-          <label for="validationDefault01" class="form-label">Имя</label>
-          <input type="text" class="form-control" id="validationDefault01" name="name">
+    <div class="h-50 fw-bold fs-4 col-lg-6 mx-auto text-center text-success px-2 py-5 shadow-lg rounded"
+         *ngIf="isResponse.success">
+      Спасибо за заказ!
+    </div>
+
+    <div class="order-form" *ngIf="isResponse.error || !isResponse.success">
+      <form class="row g-3 col-lg-6 mx-auto"
+            method="get"
+            [formGroup]="orderForm">
+        <div class="col-12">
+          <label for="validationDefault06" class="form-label">Товар</label>
+          <input readonly type="text" class="form-control" id="validationDefault07"
+                 formControlName="product">
         </div>
         <div class="col-lg-12 col-xl-4">
-          <label for="validationDefault02" class="form-label">Фамилия</label>
-          <input type="text" class="form-control" id="validationDefault02">
+          <label for="validationDefault01" class="form-label"
+                 [class]="{'text-danger': nameUser?.invalid && (nameUser?.dirty || nameUser?.touched)}">
+            Имя
+          </label>
+          <input type="text" class="form-control" id="validationDefault01" name="name"
+                 formControlName="nameUser">
+          <div *ngIf="nameUser?.invalid && (nameUser?.dirty || nameUser?.touched)">
+            <div class="text-danger"
+                 *ngIf="nameUser?.errors?.['required']">
+              Необходимо заполнить
+            </div>
+            <div class="text-danger"
+                 *ngIf="nameUser?.errors?.['pattern']">
+              Должно содержать только буквы
+            </div>
+          </div>
         </div>
         <div class="col-lg-12 col-xl-4">
-          <label for="validationDefaultPhone" class="form-label">Телефон</label>
-          <input type="tel" class="form-control" id="validationDefaultPhone">
+          <label for="validationDefault02" class="form-label"
+                 [class]="{'text-danger': lastNameUser?.invalid && (lastNameUser?.dirty || lastNameUser?.touched)}">
+            Фамилия
+          </label>
+          <input type="text" class="form-control" id="validationDefault02"
+                 formControlName="lastNameUser">
+          <div *ngIf="lastNameUser?.invalid && (lastNameUser?.dirty || lastNameUser?.touched)">
+            <div class="text-danger"
+                 *ngIf="lastNameUser?.errors?.['required']">
+              Необходимо заполнить
+            </div>
+            <div class="text-danger"
+                 *ngIf="lastNameUser?.errors?.['pattern']">
+              Должно содержать только буквы
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-xl-4">
+          <label for="validationDefaultPhone" class="form-label"
+                 [class]="{'text-danger': phone?.invalid && (phone?.dirty || phone?.touched)}">
+            Телефон
+          </label>
+          <input type="tel" class="form-control" id="validationDefaultPhone"
+                 formControlName="phone">
+          <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+            <div class="text-danger"
+                 *ngIf="phone?.errors?.['required']">
+              Необходимо заполнить
+            </div>
+            <div class="text-danger"
+                 *ngIf="phone?.errors?.['pattern']">
+              Должно содержать 11 цифры
+            </div>
+          </div>
         </div>
         <div class="col-md-12 col-lg-6">
-          <label for="validationDefault03" class="form-label">Страна</label>
-          <input type="text" class="form-control" id="validationDefault03">
+          <label for="validationDefault03" class="form-label"
+                 [class]="{'text-danger': country?.invalid &&(country?.dirty || country?.touched)}">
+            Страна
+          </label>
+          <input type="text" class="form-control" id="validationDefault03"
+                 formControlName="country">
+          <div class="text-danger"
+               *ngIf="country?.invalid && (country?.dirty || country?.touched) && country?.errors?.['required']">
+            Необходимо заполнить
+          </div>
         </div>
         <div class="col-md-12 col-lg-6">
-          <label for="validationIndex" class="form-label">Индекс</label>
-          <input type="text" class="form-control" id="validationIndex">
+          <label for="validationIndex" class="form-label"
+                 [class]="{'text-danger': index?.invalid &&(index?.dirty || index?.touched)}">
+            Индекс
+          </label>
+          <input type="text" class="form-control" id="validationIndex"
+                 formControlName="index">
+          <div class="text-danger"
+               *ngIf="index?.invalid && (index?.dirty || index?.touched) && index?.errors?.['required']">
+            Необходимо заполнить
+          </div>
         </div>
         <div class="col-12">
-          <label for="validationDefault06" class="form-label">Адрес</label>
-          <input type="text" class="form-control" id="validationDefault06">
+          <label for="validationDefault06" class="form-label"
+                 [class]="{'text-danger': address?.invalid && (address?.dirty || address?.touched)}">
+            Адрес
+          </label>
+          <input type="text" class="form-control" id="validationDefault06"
+                 formControlName="address">
+          <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+            <div class="text-danger"
+                 *ngIf="address?.errors?.['required']">
+              Необходимо заполнить
+            </div>
+            <div class="text-danger"
+                 *ngIf="address?.errors?.['pattern']">
+              Адрес содержит некорректные символы
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="validationDefault06" class="form-label">Комментарий к заказу</label>
+          <input type="text" class="form-control" id="validationDefault08"
+                 formControlName="comments">
         </div>
         <div class="col-12">
-          <button class="btn btn-primary w-md-25" type="button" id="btnSend">Отправить</button>
+          <button class="btn btn-primary w-md-25" type="button" id="btnSend"
+                  [disabled]="orderForm.invalid"
+                  (click)="createOrder()">
+            Отправить</button>
+        </div>
+        <div class="text-danger"
+             *ngIf="isResponse.error">
+          Произошла ошибка. Попробуйте еще раз.
         </div>
       </form>
-      <div class="w-50  mx-auto d-flex justify-content-center align-items-center d-none" id="popUpSuccess">
-        <div class="alert alert-success d-flex justify-content-center align-items-center fs-4 h-50 w-100"
-             role="alert">
-          Спасибо за заказ!
-        </div>
-      </div>
 
     </div>
   </div>
