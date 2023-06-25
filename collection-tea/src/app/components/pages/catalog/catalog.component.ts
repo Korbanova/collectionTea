@@ -1,35 +1,74 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
-import {HttpClient} from "@angular/common/http";
 import {ProductType} from "../../../types/product.type";
-import {RouterModule} from '@angular/router';
 import {tap} from "rxjs";
+import {HttpParams} from "@angular/common/http";
+
+declare var $: any;
 
 @Component({
   selector: 'catalog-component',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, AfterViewChecked {
   productsTea: ProductType[] = []
+  loading: boolean = false;
+  isDataSearch: boolean = false;
 
   constructor(
-    private productService: ProductService,
-    private http: HttpClient) {
+    public productService: ProductService) {
   }
 
-  ngOnInit() {
-    this.productService.getProducts()
+  fillingArrayProducts(params?: HttpParams) {
+    this.productService.getProducts(params)
+      .pipe(
+        tap(() => {
+          this.loading = false;
+        })
+      )
       .subscribe(
         {
           next: (data) => {
             this.productsTea = data;
-              console.log(this.productsTea )
           },
           error: ((error) => {
             console.log(error)
           })
         }
-      );
+      )
   }
+
+  getDataSearch(condition: boolean) {
+    if (condition) {
+      let params = new HttpParams().set('search', this.productService.wordSearch as string);
+      this.fillingArrayProducts(params);
+    } else {
+      this.fillingArrayProducts();
+    }
+  }
+
+  ngOnInit() {
+    this.loading = true;
+    console.log('catalogPage' + this.productService.wordSearch);
+    this.getDataSearch(!!this.productService.wordSearch)
+
+
+
+    this.productService.searchSubject.subscribe({
+        next: (param) => {
+          this.loading = true;
+          this.getDataSearch(param);
+          this.isDataSearch = param;
+        }
+      }
+    )
+  }
+
+  ngAfterViewChecked() {
+    $('.product-image').magnificPopup({
+      type: 'image'
+    });
+  }
+
 }

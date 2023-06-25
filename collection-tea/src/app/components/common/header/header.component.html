@@ -26,16 +26,18 @@
               Каталог
             </a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link">Цены</a>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link">Контакты</a>-->
-<!--          </li>-->
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2 w-45" type="search" placeholder="Поиск чая" aria-label="Поиск чая">
-          <button class="btn btn-outline-primary px-4" type="submit">Найти</button>
+          <input class="form-control me-2 w-45" type="search" placeholder="Поиск чая" aria-label="Поиск чая"
+                 [formControl]="wordSearch">
+          <a class="btn btn-outline-primary px-4 me-2" type="submit"
+             (click)="searchProduct()">
+            Найти
+          </a>
+          <a class="btn btn-outline-primary px-4" type="submit"
+             (click)="reset()">
+            Сброс
+          </a>
         </form>
       </div>
     </div>

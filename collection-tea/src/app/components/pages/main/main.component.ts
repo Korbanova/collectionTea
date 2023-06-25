@@ -28,8 +28,6 @@ export class MainComponent implements OnInit, OnDestroy{
     })
   }
   ngOnInit() {
-    console.log('init');
-    console.log($('#accordion'));
     this.subscription = this.observable.subscribe(param =>{
       this.showPopup = param;
     })
@@ -37,13 +35,8 @@ export class MainComponent implements OnInit, OnDestroy{
     $('#accordion').accordion();
     $('.btn').addClass(' hvr-grow');
 
-    $('.product-image').magnificPopup({
-      type: 'image'
-    });
-
   }
   ngOnDestroy() {
-    console.log('Destroy');
     this.subscription?.unsubscribe();
   }
 }
