@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProductService} from "../../../services/product.service";
 import {ProductType} from "../../../types/product.type";
+import {Subscription, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'product-component',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   product: ProductType;
+  subscriptionRouter: Subscription | null = null;
 
   constructor(private activatedRoute: ActivatedRoute,
               private productService: ProductService,
@@ -24,23 +26,22 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-        if (params['id']) {
-          this.productService.getProduct(+params['id'])
-            .subscribe(
-              {
-                next: (data => {
-                  console.log(data)
-                  this.product = data;
-                }),
-                error: (error => {
-                  this.router.navigate(['/'])
-                })
-
-              })
-
+    this.subscriptionRouter = this.activatedRoute.params.pipe(
+      switchMap((param: Params) => this.productService.getProduct(+param['id'])),
+    )
+      .subscribe(
+        {
+          next: ((data: ProductType) => {
+            this.product = data;
+          }),
+          error: (error => {
+            this.router.navigate(['/'])
+          })
         }
-
-      });
+      );
   }
+   ngOnDestroy() {
+     this.subscriptionRouter?.unsubscribe();
+   }
+
 }

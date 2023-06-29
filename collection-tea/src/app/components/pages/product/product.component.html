@@ -6,7 +6,7 @@
     <h5 class="card-title fs-2 pb-3">{{product.title}}</h5>
     <p class="card-text mb-4">{{product.description}}</p>
     <div class="d-flex justify-content-between">
-      <div class="fw-bold fs-3 w-50">{{product.price}} Р</div>
+      <div class="fw-bold fs-3 w-50">{{product.price | currency: 'RUB':'руб.': '1.0': 'fr'}}</div>
       <a class="d-block btn btn-primary w-50"
          [routerLink]="['/order']"
          [queryParams]="{product: product.title}">

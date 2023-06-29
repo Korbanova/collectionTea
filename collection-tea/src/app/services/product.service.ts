@@ -16,24 +16,23 @@ export class ProductService {
               private router: Router) {
   }
 
-  searchProduct() {
+  searchProduct(): void {
     this.isSearch = true;
     this.searchSubject.next(this.isSearch);
   }
 
-  searchProductAll() {
+  searchProductAll(): void {
     this.isSearch = false;
     this.searchSubject.next(this.isSearch);
   }
 
-  getProducts(params?:HttpParams): Observable<ProductType[]> {
+  getProducts(params?: HttpParams): Observable<ProductType[]> {
     return this.http.get<ProductType[]>('https://testologia.site/tea', {params: params});
   }
 
   getProductSearch(): Observable<ProductType[]> {
-    // return this.http.get<ProductType[]>(`https://testologia.site/tea?search=${this.wordSearch}`)
     let params = new HttpParams().set('search', this.wordSearch as string);
-    return this.http.get<ProductType[]>(`https://testologia.site/tea?search`, { params: params })
+    return this.http.get<ProductType[]>(`https://testologia.site/tea?search`, {params: params})
       .pipe(
         tap((data) => {
         })

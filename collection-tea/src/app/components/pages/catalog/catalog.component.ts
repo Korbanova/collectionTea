@@ -1,7 +1,7 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 import {ProductType} from "../../../types/product.type";
-import {tap} from "rxjs";
+import {Subscription, tap} from "rxjs";
 import {HttpParams} from "@angular/common/http";
 
 declare var $: any;
@@ -11,26 +11,25 @@ declare var $: any;
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit, AfterViewChecked {
+export class CatalogComponent implements OnInit, AfterViewChecked, OnDestroy {
   productsTea: ProductType[] = []
   loading: boolean = false;
   isDataSearch: boolean = false;
+  subProducts: Subscription | null = null;
+  subSubject: Subscription | null = null;
 
   constructor(
     public productService: ProductService) {
   }
 
-  fillingArrayProducts(params?: HttpParams) {
-    this.productService.getProducts(params)
-      .pipe(
-        tap(() => {
-          this.loading = false;
-        })
-      )
+  fillingArrayProducts(params?: HttpParams): void {
+    this.loading = true;
+    this.subProducts = this.productService.getProducts(params)
       .subscribe(
         {
-          next: (data) => {
+          next: (data: ProductType[]) => {
             this.productsTea = data;
+            this.loading = false;
           },
           error: ((error) => {
             console.log(error)
@@ -39,7 +38,7 @@ export class CatalogComponent implements OnInit, AfterViewChecked {
       )
   }
 
-  getDataSearch(condition: boolean) {
+  getDataSearch(condition: boolean): void {
     if (condition) {
       let params = new HttpParams().set('search', this.productService.wordSearch as string);
       this.fillingArrayProducts(params);
@@ -49,12 +48,10 @@ export class CatalogComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.loading = true;
     this.getDataSearch(!!this.productService.wordSearch)
 
-    this.productService.searchSubject.subscribe({
-        next: (param) => {
-          this.loading = true;
+    this.subSubject = this.productService.searchSubject.subscribe({
+        next: (param: boolean) => {
           this.getDataSearch(param);
           this.isDataSearch = param;
         }
@@ -62,10 +59,16 @@ export class CatalogComponent implements OnInit, AfterViewChecked {
     )
   }
 
+  ngOnDestroy() {
+    this.subSubject?.unsubscribe();
+    this.subProducts?.unsubscribe();
+  }
+
   ngAfterViewChecked() {
     $('.product-image').magnificPopup({
       type: 'image'
     });
   }
+
 
 }

@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Params} from "@angular/router";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../../services/product.service";
 import {Subscription} from "rxjs";
+import {OrderResponseType} from "../../../types/order-response.type";
 
 @Component({
   selector: 'order-component',
@@ -34,28 +35,28 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscriptionRouter = this.activatedRouter.queryParams.subscribe(param => {
+    this.subscriptionRouter = this.activatedRouter.queryParams.subscribe((param:Params) => {
       this.orderForm.patchValue({
         product: param['product']
       })
     })
   }
 
-  createOrder() {
+  createOrder(): void {
     if (this.orderForm.valid) {
       this.subscriptionRequest = this.productService.createOrder({
-        name: this.orderForm.value.nameUser as string,
+        name: this.nameUser?.value as string,
         last_name: this.lastNameUser?.value as string,
         phone: this.phone?.value as string,
         country: this.country?.value as string,
         zip: this.index?.value as string,
-        product: this.orderForm.get('product')?.value as string,
+        product: this.product?.value as string,
         address: this.address?.value as string,
-        comments: this.orderForm.get('comments')?.value as string
+        comments: this.comments?.value as string
       })
         .subscribe(
           {
-            next: (response) => {
+            next: (response: OrderResponseType) => {
               if (response.success === 1 && !response.message) {
                 this.isResponse.success = true;
               } else {
@@ -78,28 +79,36 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.subscriptionRequest?.unsubscribe();
   }
 
-  get nameUser() {
+  get product(): AbstractControl | null {
+    return this.orderForm.get('product')
+  }
+
+  get nameUser(): AbstractControl | null {
     return this.orderForm.get('nameUser')
   }
 
-  get lastNameUser() {
+  get lastNameUser(): AbstractControl | null {
     return this.orderForm.get('lastNameUser')
   }
 
-  get phone() {
+  get phone(): AbstractControl | null {
     return this.orderForm.get('phone')
   }
 
-  get address() {
+  get address(): AbstractControl | null {
     return this.orderForm.get('address')
   }
 
-  get country() {
+  get country(): AbstractControl | null {
     return this.orderForm.get('country')
   }
 
-  get index() {
+  get index(): AbstractControl | null {
     return this.orderForm.get('index')
+  }
+
+  get comments(): AbstractControl | null {
+    return this.orderForm.get('comments')
   }
 
 }

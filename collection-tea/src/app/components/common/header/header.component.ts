@@ -12,15 +12,14 @@ export class HeaderComponent {
   wordSearch = new FormControl('');
 
   constructor(private productService: ProductService,
-              private router: Router) {
-  }
+              private router: Router) {}
 
-  reset() {
+  reset(): void {
     this.wordSearch.setValue('');
     this.productService.searchProductAll();
   }
 
-  searchProduct() {
+  searchProduct(): void {
     this.productService.wordSearch = this.wordSearch.value;
     if (this.productService.wordSearch !== null) {
       this.productService.searchProduct();

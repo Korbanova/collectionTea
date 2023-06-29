@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
+
 declare var $: any;
 
 @Component({
@@ -7,19 +8,19 @@ declare var $: any;
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy{
+export class MainComponent implements OnInit, OnDestroy {
   private observable: Observable<boolean>;
   private subscription: Subscription | null = null;
 
   public showPopup: boolean = false;
 
   constructor() {
-    this.observable = new Observable(observer =>{
-      const timeout = setTimeout(()=>{
+    this.observable = new Observable<boolean>(observer => {
+      const timeout = setTimeout(() => {
         observer.next(true);
       }, 5000)
 
-      return{
+      return {
         unsubscribe() {
           clearTimeout(timeout);
         }
@@ -27,8 +28,9 @@ export class MainComponent implements OnInit, OnDestroy{
 
     })
   }
+
   ngOnInit() {
-    this.subscription = this.observable.subscribe(param =>{
+    this.subscription = this.observable.subscribe((param: boolean) => {
       this.showPopup = param;
     })
 
@@ -36,7 +38,12 @@ export class MainComponent implements OnInit, OnDestroy{
     $('.btn').addClass(' hvr-grow');
 
   }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
   }
 }

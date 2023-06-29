@@ -12,6 +12,10 @@ import {ProductService} from "./services/product.service";
 import {HttpClientModule} from "@angular/common/http";
 import { ProductComponent } from './components/pages/product/product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CurrencyPipe} from "@angular/common";
+import {registerLocaleData} from "@angular/common"
+import localeFr from "@angular/common/locales/fr"
+registerLocaleData(localeFr, 'fr')
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CurrencyPipe
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
