@@ -32,7 +32,8 @@ export class CatalogComponent implements OnInit, AfterViewChecked, OnDestroy {
             this.loading = false;
           },
           error: ((error) => {
-            console.log(error)
+            console.log(error);
+            this.loading = false;
           })
         }
       )

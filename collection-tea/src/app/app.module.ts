@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,8 +14,8 @@ import { ProductComponent } from './components/pages/product/product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CurrencyPipe} from "@angular/common";
 import {registerLocaleData} from "@angular/common"
-import localeFr from "@angular/common/locales/fr"
-registerLocaleData(localeFr, 'fr')
+import localeRu from "@angular/common/locales/ru"
+registerLocaleData(localeRu, 'ru')
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ registerLocaleData(localeFr, 'fr')
     FormsModule,
     CurrencyPipe
   ],
-  providers: [ProductService],
+  providers: [ProductService, {provide:LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

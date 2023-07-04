@@ -5,6 +5,9 @@
   "projects": {
     "collection-tea": {
       "projectType": "application",
+      "i18n":{
+        "sourceLocale":"ru-RU"
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"

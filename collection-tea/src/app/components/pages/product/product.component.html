@@ -1,17 +1,20 @@
-<div class="card align-items-center w-75 border-0 m-auto flex-row">
+<div class="card align-items-center w-75 border-0 m-auto flex-row" *ngIf="!isError">
 <!--  <a class="product-image d-flex justify-content-center align-items-center h-50 w-50">-->
     <img src="{{product.image}}" class="card-img-top h-50 w-25" alt="tea">
 <!--  </a>-->
-  <div class="card-body px-5 text-start">
+  <div class="card-body px-5 text-start" >
     <h5 class="card-title fs-2 pb-3">{{product.title}}</h5>
     <p class="card-text mb-4">{{product.description}}</p>
     <div class="d-flex justify-content-between">
-      <div class="fw-bold fs-3 w-50">{{product.price | currency: 'RUB':'руб.': '1.0': 'fr'}}</div>
+      <div class="fw-bold fs-3 w-50">{{product.price | currency: 'RUB':'руб.': '1.0'}}</div>
       <a class="d-block btn btn-primary w-50"
          [routerLink]="['/order']"
          [queryParams]="{product: product.title}">
         Купить</a>
     </div>
-
   </div>
+</div>
+
+<div class="card align-items-center w-75 border-0 m-auto fs-2 " *ngIf="isError">
+  Такого товара не существует!
 </div>
