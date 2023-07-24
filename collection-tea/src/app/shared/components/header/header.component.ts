@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
+import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
 
@@ -26,8 +26,8 @@ export class HeaderComponent {
     } else {
       this.productService.searchProductAll();
     }
-    if (this.router.url !== '/catalog') {
-      this.router.navigate(['/catalog'])
+    if (this.router.url !== '/products') {
+      this.router.navigate(['/products'])
     }
   }
 

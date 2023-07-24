@@ -1,17 +1,17 @@
 import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
-import {ProductType} from "../../../types/product.type";
+import {ProductService} from "../../../shared/services/product.service";
+import {ProductType} from "../../../../types/product.type";
 import {Subscription, tap} from "rxjs";
 import {HttpParams} from "@angular/common/http";
 
 declare var $: any;
 
 @Component({
-  selector: 'catalog-component',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  selector: 'products-component',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class CatalogComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class ProductsComponent implements OnInit, AfterViewChecked, OnDestroy {
   productsTea: ProductType[] = []
   loading: boolean = false;
   isDataSearch: boolean = false;

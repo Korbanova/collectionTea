@@ -1,0 +1,12 @@
+        <div class="card h-100">
+          <a class="product-image" href="{{product.image}}">
+            <img src="{{product.image}}" class="card-img-top" alt="tea">
+          </a>
+          <div class="card-body px-4">
+            <h5 class="card-title">{{product.title}}</h5>
+            <p class="card-text mb-4">{{product.description.substring(0,135) + '...'}}</p>
+            <a class="btn btn-primary w-50"
+               [routerLink]="['/products', product.id]">
+              Подробнее</a>
+          </div>
+        </div>

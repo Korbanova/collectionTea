@@ -86,7 +86,7 @@ input[readonly] {
   display: none;
 }
 
-order-component, product-component, catalog-component{
+order-component, product-component, products-component{
   flex-grow: 1;
 }
 
@@ -144,3 +144,6 @@ order-component, product-component, catalog-component{
     max-width: 140px;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

@@ -3,37 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/common/footer/footer.component';
-import { MainComponent } from './components/pages/main/main.component';
-import { HeaderComponent } from './components/common/header/header.component';
-import { CatalogComponent } from './components/pages/catalog/catalog.component';
-import { OrderComponent } from './components/pages/order/order.component';
-import {ProductService} from "./services/product.service";
-import {HttpClientModule} from "@angular/common/http";
-import { ProductComponent } from './components/pages/product/product.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CurrencyPipe} from "@angular/common";
+import {ProductService} from "./shared/services/product.service";
 import {registerLocaleData} from "@angular/common"
-import localeRu from "@angular/common/locales/ru"
-registerLocaleData(localeRu, 'ru')
+import localeRu from "@angular/common/locales/ru";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import {SharedModule} from "./shared/shared.module";
+import { LayoutComponent } from './views/layout.component';
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    MainComponent,
-    HeaderComponent,
-    CatalogComponent,
-    OrderComponent,
-    ProductComponent
+    LayoutComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CurrencyPipe
+    NgbModule
   ],
   providers: [ProductService, {provide:LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent]
