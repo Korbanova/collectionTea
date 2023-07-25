@@ -4,14 +4,12 @@ import {ProductType} from "../../../../types/product.type";
 import {Subscription, tap} from "rxjs";
 import {HttpParams} from "@angular/common/http";
 
-declare var $: any;
-
 @Component({
   selector: 'products-component',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class ProductsComponent implements OnInit, OnDestroy {
   productsTea: ProductType[] = []
   loading: boolean = false;
   isDataSearch: boolean = false;
@@ -64,12 +62,5 @@ export class ProductsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.subSubject?.unsubscribe();
     this.subProducts?.unsubscribe();
   }
-
-  ngAfterViewChecked() {
-    $('.product-image').magnificPopup({
-      type: 'image'
-    });
-  }
-
 
 }
