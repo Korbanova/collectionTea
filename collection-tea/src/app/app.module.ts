@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {ProductService} from "./shared/services/product.service";
 import {registerLocaleData} from "@angular/common"
 import localeRu from "@angular/common/locales/ru";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap'
 import {SharedModule} from "./shared/shared.module";
 import { LayoutComponent } from './views/layout.component';
 registerLocaleData(localeRu, 'ru');
@@ -20,7 +20,10 @@ registerLocaleData(localeRu, 'ru');
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+     NgbModule,
+    //NgbModule.forRoot(),
+    // NgbdModalComponent,
+    // NgbdModalContent
   ],
   providers: [ProductService, {provide:LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent]

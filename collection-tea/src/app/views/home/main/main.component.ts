@@ -1,5 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
+import {PopupComponent} from "../../../shared/components/popup/popup.component";
 
 declare var $: any;
 
@@ -8,7 +9,10 @@ declare var $: any;
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit, AfterViewInit {
+  @ViewChild(PopupComponent)
+  private popupComponent!:PopupComponent;
+
   private observable: Observable<boolean>;
   private subscription: Subscription | null = null;
 
@@ -30,20 +34,27 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.observable.subscribe((param: boolean) => {
-      this.showPopup = param;
-    })
+    // this.subscription = this.observable.subscribe((param: boolean) => {
+    //   this.showPopup = param;
+    // })
 
     $('#accordion').accordion();
     $('.btn').addClass(' hvr-grow');
 
   }
+  ngAfterViewInit() {
+    this.subscription = this.observable.subscribe((param: boolean) => {
+      this.popupComponent.open();
+    })
+    // this.popupComponent.open();
+  }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+   // this.popupComponent.closeModal();
   }
 
-  closePopup(): void {
-    this.showPopup = false;
-  }
+  // closePopup(): void {
+  //   this.showPopup = false;
+  // }
 }

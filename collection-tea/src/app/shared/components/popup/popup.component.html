@@ -1,0 +1,11 @@
+<ng-template #popup>
+  <div class="modal-header justify-content-end border-0">
+    <button type="button" class="btn-close position-absolute" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body display-5 fw-bold py-4 fs-2">
+    <p>{{data}}</p>
+  </div>
+  <div class="modal-footer">
+    <a routerLink="products" class="btn btn-primary px-5 mt-3" type="button" (click)="closeModal()">Смотреть</a>
+  </div>
+</ng-template>

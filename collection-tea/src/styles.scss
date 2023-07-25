@@ -90,6 +90,11 @@ order-component, product-component, products-component{
   flex-grow: 1;
 }
 
+div.modal-content{
+  padding: 20px;
+
+}
+
 .loader-bg {
   position: fixed;
   display: flex;
