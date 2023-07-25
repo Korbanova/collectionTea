@@ -5,7 +5,7 @@ import {ProductType} from "../../../../types/product.type";
 import {Subscription, switchMap, tap} from "rxjs";
 
 @Component({
-  selector: 'product',
+  selector: 'product-component',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })

@@ -33,15 +33,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/jquery-ui/themes/base/accordion.css",
-              "node_modules/magnific-popup/dist/magnific-popup.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jquery-ui/dist/jquery-ui.js",
-              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

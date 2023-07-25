@@ -1,22 +1,43 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {PopupComponent} from "../../../shared/components/popup/popup.component";
-
-declare var $: any;
 
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements AfterViewInit {
   @ViewChild(PopupComponent)
-  private popupComponent!:PopupComponent;
+  private popupComponent!: PopupComponent;
 
   private observable: Observable<boolean>;
   private subscription: Subscription | null = null;
 
   public showPopup: boolean = false;
+
+  panels = [
+    {
+      title: 'Собираете ли вы подарочные боксы?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!'
+    },
+    {
+      title: 'Сколько у вас разновидностей чая?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!'
+    },
+    {
+      title: 'В какой срок осуществляется доставка?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!'
+    },
+    {
+      title: 'У вас обновляется ассортимент?',
+      body: 'Да, у нас есть такая услуга.'
+    },
+    {
+      title: 'Какого объема у вас пачки чая?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!'
+    },
+  ];
 
   constructor() {
     this.observable = new Observable<boolean>(observer => {
@@ -29,32 +50,16 @@ export class MainComponent implements OnInit, AfterViewInit {
           clearTimeout(timeout);
         }
       }
-
     })
   }
 
-  ngOnInit() {
-    // this.subscription = this.observable.subscribe((param: boolean) => {
-    //   this.showPopup = param;
-    // })
-
-    $('#accordion').accordion();
-    $('.btn').addClass(' hvr-grow');
-
-  }
   ngAfterViewInit() {
     this.subscription = this.observable.subscribe((param: boolean) => {
       this.popupComponent.open();
     })
-    // this.popupComponent.open();
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-   // this.popupComponent.closeModal();
   }
-
-  // closePopup(): void {
-  //   this.showPopup = false;
-  // }
 }

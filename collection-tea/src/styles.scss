@@ -31,68 +31,56 @@
 .prev {
   left: 1%;
 }
+
 input[readonly] {
   background: rgba(234, 239, 239, 0.39);
   /* custom style */
 }
 
-.ui-accordion .ui-accordion-header {
-  padding: 25px 50px 25px 25px;
+.accordion .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  color: #053b83;
+}
+
+.accordion .accordion-item {
+  border: 0;
+  margin-bottom: 10px;
+}
+
+.accordion .accordion-button, .accordion-header {
+  padding: 15px;
   background: linear-gradient(360deg, #076BFF 0%, #007BFF 100%);
   border-radius: 10px;
   border: 0;
   color: #FFFFFF;
   font-weight: bold;
-  margin-bottom: 16px;
 }
 
-.ui-accordion .ui-accordion-content {
-  /*padding-top: 8px;*/
-  /*padding-bottom: 25px;*/
-  border: 0;
+.accordion-item .accordion-button::after {
+  background: url("assets/images/next2.png");
 }
 
-.ui-icon {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 27px;
-  right: 27px;
-  background: 0;
-}
+.accordion-item .accordion-button:not(.collapsed)::after {
 
-.ui-state-hover .ui-icon {
-  background: url("assets/images/next3.png");
-}
-
-.ui-state-active .ui-icon {
-  background-image: url("assets/images/next1.png");
-}
-
-.ui-icon-triangle-1-e {
-  background-image: url("assets/images/next2.png");
-}
-
-#accordion p {
-  margin-bottom: 0;
-  /*vertical-align:center;*/
-}
-
-.ui-accordion .ui-accordion-header-active {
-  margin-bottom: 0;
+  background-image: url("assets/images/next3.png");
 }
 
 .close {
   display: none;
 }
 
-order-component, product-component, products-component{
+app-layout {
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+}
+
+order-component, product-component, products-component {
   flex-grow: 1;
 }
 
-div.modal-content{
+div.modal-content {
   padding: 20px;
-
 }
 
 .loader-bg {
@@ -115,6 +103,7 @@ div.modal-content{
   height: 120px;
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg)
@@ -123,6 +112,7 @@ div.modal-content{
     transform: rotate(360deg)
   }
 }
+
 @media screen and (max-width: 970px) {
   .slider-list {
     height: 500px;

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {OrderComponent} from "./order.component";
 
 const routes: Routes = [
-  {path: "order", component: OrderComponent}
+  {path: "", component: OrderComponent}
 ];
 
 @NgModule({

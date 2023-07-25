@@ -3,11 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from "./views/layout.component";
 
 const routes: Routes = [
-  // {path: "", component: MainComponent},
-  // {path: "products", component: ProductsComponent},
-  // {path: "products/:id", component: ProductComponent},
-  // {path: "order", component: OrderComponent},
-  // {path: "**", redirectTo: ''}
   {
     path: '',
     component: LayoutComponent,
