@@ -7,7 +7,6 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { PopupComponent } from './components/popup/popup.component';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
